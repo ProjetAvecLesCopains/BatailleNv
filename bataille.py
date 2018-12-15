@@ -12,20 +12,18 @@ from tkinter import *
 ##############################################
 # Définitions locales de fonctions
 
-x=0
-
-def traceCercle():
+def traceCercle(): #fonction qui sert a tracer les cercles 
     global x,y
-    r=15
-    x=x+1
+    r=15 #rayon du cercle
+    x=x+1 
     return can.create_oval(x-r, y-r, x+r, y+r, fill='red',outline='black')
 
-def CoordX(evt):
+def CoordX(evt): #ce qui transforme  des coordonner en X en coordonner sur le canvas
     global x
     x=int(saisieProposition.get())
     x=pas*(x-1)+(1/2)*pas
 
-def CoordY(evt):
+def CoordY(evt): #ce qui transforme  des coordonner en Y en coordonner sur le canvas
     global y
     y=int(saisieProposition2.get())
     y=pas*(y-1)+(1/2)*pas
@@ -57,29 +55,29 @@ chaineProposition="Saisie ta proposition et appuie sur entrée"
 testProposition=Label(fen,text=chaineProposition)
 testProposition.grid(row=6,column=3)
 
-#Boite de saisie
+# Text a cote de la boite de saisie X
 chaineX="X"
 textX=Label(fen,text=chaineX)
 textX.grid(row=7,column=2,sticky='e')
-
+#Boite de saisie
 saisieProposition=Entry(fen)
 saisieProposition.config(justify='left')
 saisieProposition.grid(row=7,column=3)
 saisieProposition.bind('<Return>',CoordX)
-
+# Text a cote de la boite de saisie Y
 chaineY="Y"
 textY=Label(fen,text=chaineY)
 textY.grid(row=8,column=2,sticky='e')
-
+#Boite de saisie
 saisieProposition2=Entry(fen)
 saisieProposition2.config(justify='left')
 saisieProposition2.grid(row=8,column=3)
 saisieProposition2.bind('<Return>',CoordY)
-
+#Bouton tracer en bas a droite
 boutonCercle=Button(fen,text='Tracer',command=traceCercle,capstyle=round)
 boutonCercle.grid(column=5,row=9)
 
 ##############################################
 # Corps principal du programme
 
-fen.mainloop()
+fen.mainloop() # lance le programme
