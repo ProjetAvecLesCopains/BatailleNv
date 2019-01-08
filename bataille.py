@@ -59,20 +59,24 @@ testProposition.grid(row=6,column=3)
 chaineX="X"
 textX=Label(fen,text=chaineX)
 textX.grid(row=7,column=2,sticky='e')
-#Boite de saisie
+
+#Boite de saisie de X
 saisieProposition=Entry(fen)
 saisieProposition.config(justify='left')
 saisieProposition.grid(row=7,column=3)
 saisieProposition.bind('<Return>',CoordX)
+
 # Text a cote de la boite de saisie Y
 chaineY="Y"
 textY=Label(fen,text=chaineY)
 textY.grid(row=8,column=2,sticky='e')
-#Boite de saisie
+
+#Boite de saisie de Y
 saisieProposition2=Entry(fen)
 saisieProposition2.config(justify='left')
 saisieProposition2.grid(row=8,column=3)
 saisieProposition2.bind('<Return>',CoordY)
+
 #Bouton tracer en bas a droite
 boutonCercle=Button(fen,text='Tracer',command=traceCercle,capstyle=round)
 boutonCercle.grid(column=5,row=9)
