@@ -1,7 +1,7 @@
 ##############################################
 # Auteur : Boillaud Sauvinet Orliange        #
 # le 24/09/18                                #
-# OS Windows 10, Python 3.6 32 bits          #
+# OS Windows 10, Python 3.7.2 32 bits        #
 # Titre : Bataille Navale                    #
 # Licence GPL                                #
 ##############################################
@@ -12,21 +12,66 @@ from tkinter import *
 ##############################################
 # Définitions locales de fonctions
 
-def traceCercle(): #fonction qui sert a tracer les cercles 
-    global x,y
+def traceCercle(): #fonction qui sert a tracer les cercles
+    global xcase,ycase
     r=15 #rayon du cercle
-    x=x+1 
-    return can.create_oval(x-r, y-r, x+r, y+r, fill='red',outline='black')
+    x=x+1
+    return can.create_oval(xcase-r, ycase-r, xcase+r, ycase+r, fill='red',outline='black')
 
-def CoordX(evt): #ce qui transforme  des coordonner en X en coordonner sur le canvas
-    global x
-    x=int(saisieProposition.get())
-    x=pas*(x-1)+(1/2)*pas
 
-def CoordY(evt): #ce qui transforme  des coordonner en Y en coordonner sur le canvas
-    global y
-    y=int(saisieProposition2.get())
-    y=pas*(y-1)+(1/2)*pas
+def pointeur(event):
+    x=int(event.x)
+    y=int(event.y)
+
+    if x <= pas*1 :
+        numcasex=1
+    elif x <= pas*2 :
+        numcasex=2
+    elif x <= pas*3 :
+        numcasex=3
+    elif x <= pas*4 :
+        numcasex=4
+    elif x <= pas*5 :
+        numcasex=5
+    elif x <= pas*6 :
+        numcasex=6
+    elif x <= pas*7 :
+        numcasex=7
+    elif x <= pas*8 :
+        numcasex=8
+    elif x <= pas*9 :
+        numcasex=9
+    elif x <= pas*10 :
+        numcasex=10
+
+    if y <= pas*1 :
+        numcasey=1
+    elif y <= pas*2 :
+        numcasey=2
+    elif y <= pas*3 :
+        numcasey=3
+    elif y <= pas*4 :
+        numcasey=4
+    elif y <= pas*5 :
+        numcasey=5
+    elif y <= pas*6 :
+        numcasey=6
+    elif y <= pas*7 :
+        numcasey=7
+    elif y <= pas*8 :
+        numcasey=8
+    elif y <= pas*9 :
+        numcasey=9
+    elif y <= pas*10 :
+        numcasey=10
+
+    xcase=pas*(numcasex-1)+(1/2)*pas
+
+    ycase=pas*(numcasey-1)+(1/2)*pas
+
+    r=15 #rayon du cercle
+    xcase=xcase+1
+    return can.create_oval(xcase-r, ycase-r, xcase+r, ycase+r, fill='red',outline='black')
 
 ##############################################
 # Interface graphique
@@ -50,36 +95,14 @@ while (y<=nbrcase):
     can.create_line(pas*y,0,pas*y,cote,fill='black')
     y=y+1
 
-#text au dessus de boite de saisie
-chaineProposition="Saisie ta proposition et appuie sur entrée"
+#text en bas de la fenetre
+chaineProposition="clique Sur une case "
 testProposition=Label(fen,text=chaineProposition)
 testProposition.grid(row=6,column=3)
 
-# Text a cote de la boite de saisie X
-chaineX="X"
-textX=Label(fen,text=chaineX)
-textX.grid(row=7,column=2,sticky='e')
+# Config de la souris sur la fenetre
+fen.bind("<Button-1>", pointeur)
 
-#Boite de saisie de X
-saisieProposition=Entry(fen)
-saisieProposition.config(justify='left')
-saisieProposition.grid(row=7,column=3)
-saisieProposition.bind('<Return>',CoordX)
-
-# Text a cote de la boite de saisie Y
-chaineY="Y"
-textY=Label(fen,text=chaineY)
-textY.grid(row=8,column=2,sticky='e')
-
-#Boite de saisie de Y
-saisieProposition2=Entry(fen)
-saisieProposition2.config(justify='left')
-saisieProposition2.grid(row=8,column=3)
-saisieProposition2.bind('<Return>',CoordY)
-
-#Bouton tracer en bas a droite
-boutonCercle=Button(fen,text='Tracer',command=traceCercle,capstyle=round)
-boutonCercle.grid(column=5,row=9)
 
 ##############################################
 # Corps principal du programme
