@@ -1,7 +1,7 @@
 ##############################################
 # Auteur : Boillaud Sauvinet Orliange        #
 # le 24/09/18                                #
-# OS Windows 10, Python 3.7.2 32 bits        #
+# OS Windows 10, Python 3.6 32 bits          #
 # Titre : Bataille Navale                    #
 # Licence GPL                                #
 ##############################################
@@ -12,11 +12,6 @@ from tkinter import *
 ##############################################
 # Définitions locales de fonctions
 
-def traceCercle(): #fonction qui sert a tracer les cercles
-    global xcase,ycase
-    r=15 #rayon du cercle
-    x=x+1
-    return can.create_oval(xcase-r, ycase-r, xcase+r, ycase+r, fill='red',outline='black')
 
 
 def pointeur(event):
@@ -66,18 +61,23 @@ def pointeur(event):
         numcasey=10
 
     xcase=pas*(numcasex-1)+(1/2)*pas
-
     ycase=pas*(numcasey-1)+(1/2)*pas
 
     r=15 #rayon du cercle
     xcase=xcase+1
     return can.create_oval(xcase-r, ycase-r, xcase+r, ycase+r, fill='red',outline='black')
 
+def bateau3():
+    pass
+
+def place():
+    pass
+
 ##############################################
 # Interface graphique
 
 fen=Tk()
-fen.title('Bataille Navale')
+fen.title('Space Battle')
 cote=400
 
 can=Canvas(fen,bg="white", height=cote, width=cote)
@@ -101,7 +101,12 @@ testProposition=Label(fen,text=chaineProposition)
 testProposition.grid(row=6,column=3)
 
 # Config de la souris sur la fenetre
-fen.bind("<Button-1>", pointeur)
+can.bind("<Button-1>", pointeur)
+
+#Bouton choix de la taille du bateau
+
+boutonbateau3=Button(fen,text="Bateau 3 case",command=bateau3)
+boutonbateau3.grid(row=2,column=12)
 
 
 ##############################################
