@@ -68,10 +68,14 @@ def apprendrecoor(listx1,listy2,listy1,listx2,ListJoueur1X,ListJoueur1Y,ListJoue
         FonctionAtt(abc,x,y)
         BoutonJouer.grid(row=15,column=3,columnspan=2)
 
+def ajoutvaleur():
+    global VA
+    VA=VA+1
+    
 def FonctionAtt(abc,x,y):
     global Couleur
 
-    if abc==1:       #joueur1
+    if abc==0:       #joueur1
         Label.config(text="Le joueur 1 joue")
         Couleur="red"
         if (GrilleJoueur2[int(x)][int(y)])==1:
